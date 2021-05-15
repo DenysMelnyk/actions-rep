@@ -14,7 +14,7 @@ jobs:
         server: steelballs.com.ua
         username: qtqzgjpe
         password: ${{ secrets.ftp_password }}
-        local-dir: /app/
+        local-dir: ./app/
         server-dir: /githubactions.steelballs.com.ua/
         exclude: .git*
           - .git*/**
