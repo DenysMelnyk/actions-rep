@@ -17,17 +17,17 @@ jobs:
       run: npm install
     - name: Run build task
       run: gulp styles html scripts --if-present
-   - name: 📂 Sync files
-      uses: SamKirkland/FTP-Deploy-Action@4.0.0
-      with:
-        server: steelballs.com.ua
-        username: qtqzgjpe
-        password: ${{ secrets.ftp_password }}
-        server_dir: /githubactions.steelballs.com.ua/
-        exclude: .git*
-          - .git*/**
-          - node_modules/**
-          - node_modules/**/*
+    - name: 📂 Sync files
+        uses: SamKirkland/FTP-Deploy-Action@4.0.0
+        with:
+          server: steelballs.com.ua
+          username: qtqzgjpe
+          password: ${{ secrets.ftp_password }}
+          server_dir: /githubactions.steelballs.com.ua/
+          exclude: .git*
+            - .git*/**
+            - node_modules/**
+            - node_modules/**/*
 
 
 
