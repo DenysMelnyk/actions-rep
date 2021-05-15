@@ -1,0 +1,24 @@
+@import 'inc/default';
+@import 'inc/fonts';
+@import 'inc/vars';
+
+body {
+	color: $text;
+	font-size: $bodyfontsize;
+	font-family: $bodyfont;
+	line-height: 1.2;
+}
+
+@import 'layout';
+
+main {
+	position: relative;
+	overflow: hidden;
+}
+
+@import 'parts/header';
+
+
+@import 'parts/footer';
+
+@import 'media-extra';

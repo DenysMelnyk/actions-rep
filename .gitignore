@@ -1,0 +1,7 @@
+#Untrack folders
+node_modules/
+.history/
+app/css
+app/*.html
+app/components
+package-lock.json
