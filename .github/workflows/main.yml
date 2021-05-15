@@ -1,35 +1,20 @@
-name: Node CI
-
-on: [push]
-
+on: push
+name: 🚀 Deploy website on push
 jobs:
-  build:
-
+  web-deploy:
+    name: 🎉 Deploy
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v1
-    - name: Install Node.js
-      uses: actions/setup-node@v1
-      with:
-        node-version: '10.x'
-    - name: Install npm dependencies
-      run: npm install
-    - name: Run build task
-      run: gulp styles html scripts --if-present
+    - name: 🚚 Get latest code
+      uses: actions/checkout@v2.3.2
+
     - name: 📂 Sync files
-        uses: SamKirkland/FTP-Deploy-Action@4.0.0
-        with:
-          server: steelballs.com.ua
-          username: qtqzgjpe
-          password: ${{ secrets.ftp_password }}
-          server_dir: /githubactions.steelballs.com.ua/
-          exclude: .git*
-            - .git*/**
-            - node_modules/**
-            - node_modules/**/*
-
-
-
-    
-    
+      uses: SamKirkland/FTP-Deploy-Action@4.0.0
+      with:
+        server: steelballs.com.ua
+        username: qtqzgjpe
+        password: ${{ secrets.ftp_password }}
+        exclude: .git*
+          - .git*/**
+          - node_modules/**
+          - node_modules/**/*
