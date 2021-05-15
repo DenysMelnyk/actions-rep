@@ -17,13 +17,19 @@ jobs:
       run: npm install
     - name: Run build task
       run: gulp styles html scripts --if-present
-    - name: Deploy to Server
-      uses: easingthemes/ssh-deploy@v2.1.5
-      env:
-          SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
-          ARGS: "-rltgoDzvO --delete"
-          SOURCE: "app/"
-          REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-          REMOTE_USER: ${{ secrets.REMOTE_USER }}
-          TARGET: ${{ secrets.REMOTE_TARGET }}
-          EXCLUDE: "/dist/, /node_modules/"
+   - name: 📂 Sync files
+      uses: SamKirkland/FTP-Deploy-Action@4.0.0
+      with:
+        server: steelballs.com.ua
+        username: qtqzgjpe
+        password: ${{ secrets.ftp_password }}
+        server_dir: /githubactions.steelballs.com.ua/
+        exclude: .git*
+          - .git*/**
+          - node_modules/**
+          - node_modules/**/*
+
+
+
+    
+    
