@@ -21,12 +21,12 @@ jobs:
       run: gulp styles html scripts
 
     - name: Deploy to Staging server
-      uses: easingthemes/ssh-deploy@v2.1.5
-      env:
-        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-        ARGS: "-rltgoDzvO"
-        SOURCE: ${{ secrets.SOURCE }}
-        REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
-        REMOTE_USER: ${{ secrets.REMOTE_USER }}
-        TARGET: ${{ secrets.TARGET }}
-        EXCLUDE: ${{ secrets.EXCLUDE }}
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{secrets.REMOTE_HOST}}
+        username: ${{secrets.REMOTE_USER}}
+        port: 22
+        script: |
+          cd actions-rep
+          git pull origin master
+          git status

@@ -5,3 +5,4 @@ app/css
 app/*.html
 app/components
 package-lock.json
+.idea/
