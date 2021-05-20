@@ -20,15 +20,13 @@ jobs:
     - name: Gulp work
       run: gulp styles html scripts
 
-    - name: 📂 Sync files
-      uses: SamKirkland/FTP-Deploy-Action@4.0.0
-      with:
-        server: steelballs.com.ua
-        username: qtqzgjpe
-        password: ${{ secrets.ftp_password }}
-        local-dir: ./app/
-        server-dir: /githubactions.steelballs.com.ua/
-        exclude: .git*
-          - .git*/**
-          - node_modules/**
-          - node_modules/**/*
+    - name: Deploy to Staging server
+      uses: easingthemes/ssh-deploy@v2.1.5
+      env:
+        SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+        ARGS: "-rltgoDzvO"
+        SOURCE: ${{ secrets.SOURCE }}
+        REMOTE_HOST: ${{ secrets.REMOTE_HOST }}
+        REMOTE_USER: ${{ secrets.REMOTE_USER }}
+        TARGET: ${{ secrets.TARGET }}
+        EXCLUDE: ${{ secrets.EXCLUDE }}
