@@ -19,14 +19,3 @@ jobs:
       run: npm install
     - name: Gulp work
       run: gulp styles html scripts
-
-    - name: Deploy to Staging server
-      uses: appleboy/ssh-action@master
-      with:
-        host: ${{secrets.REMOTE_HOST}}
-        username: ${{secrets.REMOTE_USER}}
-        port: 22
-        script: |
-          cd actions-rep
-          git pull origin master
-          git status
